@@ -33,6 +33,7 @@ function App() {
   )
 }
 
+
 const SearchBar = () => {
   // Sample list of items to search
   const items = ['Apple', 'Banana', 'Cherry', 'Date', 'Grapes', 'Orange'];
@@ -85,4 +86,7 @@ const SearchBar = () => {
     </div>
   );
 };
+
+// poop
+
 export default App
