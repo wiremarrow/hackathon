@@ -27,3 +27,8 @@ dist-ssr
 .amplify
 amplify_outputs*
 amplifyconfiguration*
+pu2023.csv
+pu2023_schema.json
+pu2023_csv/pu2023.csv
+pu2023_csv.zip
+train_sipp_model.py
