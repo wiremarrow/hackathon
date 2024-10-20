@@ -8,6 +8,10 @@ function App() {
 
   return (
     <>
+      <h1>SupportSpectrum</h1>
+      <div id="searchBarContainer">
+        <SearchBar />
+      </div>
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -25,11 +29,60 @@ function App() {
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
 
+const SearchBar = () => {
+  // Sample list of items to search
+  const items = ['Apple', 'Banana', 'Cherry', 'Date', 'Grapes', 'Orange'];
+
+  // State to hold search query and filtered items
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredItems, setFilteredItems] = useState(items);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // Function to handle search input
+  const handleSearch = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      const filtered = items.filter(item =>
+        item.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setFilteredItems(filtered);
+      setIsSubmitted(true); // Allow display of results after Enter is pressed
+    }
+  };
+
+  return (
+    <div>
+      {/* Search input field */}
+      <input
+        type="text"
+        placeholder="Find your benefits..."
+        value={searchQuery}
+        onChange={handleSearch}
+        onKeyDown={handleKeyDown}
+        style={{ padding: '8px', width: '700px', height: '20px', marginBottom: '20px' }}
+      />
+
+      {/* Display filtered items only after Enter is pressed */}
+      {isSubmitted && (
+        <ul>
+          {filteredItems.length > 0 ? (
+            filteredItems.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))
+          ) : (
+            <li>No items found</li>
+          )}
+        </ul>
+      )}
+    </div>
+  );
+};
 export default App
